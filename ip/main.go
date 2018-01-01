@@ -4,11 +4,20 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"time"
 )
 
 func main() {
-	http.HandleFunc("/ip", ipHandler)
-	http.ListenAndServe(":2311", nil)
+
+	s := &http.Server{
+		Addr:           "127.0.0.1:2311",
+		Handler:        http.HandlerFunc(ipHandler), // cast
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   0,
+		MaxHeaderBytes: 1 << 20,
+	}
+
+	s.ListenAndServe()
 }
 
 func ipHandler(w http.ResponseWriter, r *http.Request) {
