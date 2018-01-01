@@ -31,6 +31,7 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 			ips = append(ips, ip)
 		}
 	}
+	fmt.Println("ips:", ips)
 	if len(ips) == 0 { // no IP available in headers, use RemoteAddr instead
 		host, _, err := net.SplitHostPort(r.RemoteAddr)
 		return net.ParseIP(host), err
