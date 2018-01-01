@@ -4,20 +4,17 @@ import (
 	"fmt"
 	"net"
 	"net/http"
-	"time"
+	"os"
+
+	"github.com/gorilla/handlers"
 )
 
 func main() {
 
-	s := &http.Server{
-		Addr:           "127.0.0.1:2311",
-		Handler:        http.HandlerFunc(ipHandler), // cast
-		ReadTimeout:    10 * time.Second,
-		WriteTimeout:   0,
-		MaxHeaderBytes: 1 << 20,
-	}
+	r := http.NewServeMux()
 
-	s.ListenAndServe()
+	r.Handle("/", handlers.LoggingHandler(os.Stdout, http.HandlerFunc(ipHandler)))
+	http.ListenAndServe("127.0.0.1:2311", handlers.CompressHandler(r))
 }
 
 func ipHandler(w http.ResponseWriter, r *http.Request) {
