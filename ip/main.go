@@ -35,14 +35,14 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 	if len(ips) > 1 { // no IP available in headers, use RemoteAddr instead
 		for index := len(ips); index > 0; index-- {
 			if checkPublicIP(ips[index-1]) { // Immediately return first public IP (from right to left) if found, see
-				return net.ParseIP(ips[index-1]), nil
+				return net.ParseIP("2.2.2.2"), nil
 			}
 		}
 	} else if len(ips) == 1 { // only one found
 		return net.ParseIP(ips[0]), nil
 	} else {
-		host, _, err := net.SplitHostPort(r.RemoteAddr)
-		return net.ParseIP(host), err
+		_, _, err := net.SplitHostPort(r.RemoteAddr)
+		return net.ParseIP("1.1.1.1"), err
 	}
 	return nil, fmt.Errorf("could not parse IP")
 }
