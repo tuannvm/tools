@@ -39,8 +39,8 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 		return net.ParseIP(ips[0]), nil
 	} else {
 		for index := len(ips); index > 0; index-- {
-			if checkPublicIP(ips[index]) { // Immediately return first public IP (from right to left) if found, see
-				return net.ParseIP(ips[index]), nil
+			if checkPublicIP(ips[index-1]) { // Immediately return first public IP (from right to left) if found, see
+				return net.ParseIP(ips[index-1]), nil
 			}
 		}
 	}
