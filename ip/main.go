@@ -4,11 +4,17 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"os"
+
+	"github.com/gorilla/handlers"
 )
 
 func main() {
-	http.HandleFunc("/ip", ipHandler)
-	http.ListenAndServe(":2311", nil)
+
+	r := http.NewServeMux()
+
+	r.Handle("/", handlers.LoggingHandler(os.Stdout, http.HandlerFunc(ipHandler)))
+	http.ListenAndServe("127.0.0.1:2311", handlers.CompressHandler(r))
 }
 
 func ipHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,24 +31,22 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 			ips = append(ips, ip)
 		}
 	}
-	if len(ips) == 0 { // no IP available in headers, use RemoteAddr instead
-		host, _, err := net.SplitHostPort(r.RemoteAddr)
-		return net.ParseIP(host), err
-	} else if len(ips) == 1 { // only one found
-		return net.ParseIP(ips[0]), nil
-	} else {
+	fmt.Println("ips:", ips)
+	if len(ips) > 1 {
 		for index := len(ips); index > 0; index-- {
-			if checkPublicIP(ips[index]) { // Immediately return first public IP (from right to left) if found, see
-				return net.ParseIP(ips[index]), nil
+			if checkPublicIP(ips[index-1]) { // Immediately return first public IP (from right to left) if found, see
+				return net.ParseIP(ips[index-1]), nil
 			}
 		}
 	}
-	return nil, fmt.Errorf("could not parse IP")
+
+	host, _, err := net.SplitHostPort(r.RemoteAddr) // no IP available in headers, use RemoteAddr instead
+	return net.ParseIP(host), err
 }
 
 func checkPublicIP(str string) bool {
 	ip := net.ParseIP(str)
-	if ip.IsGlobalUnicast() || ip.IsInterfaceLocalMulticast() || ip.IsLinkLocalMulticast() || ip.IsLinkLocalUnicast() || ip.IsLoopback() || ip.IsMulticast() || ip.IsUnspecified() { // check if IP is public, looks tidious :|
+	if ip.IsInterfaceLocalMulticast() || ip.IsLinkLocalMulticast() || ip.IsLinkLocalUnicast() || ip.IsLoopback() || ip.IsMulticast() || ip.IsUnspecified() { // check if IP is public, looks tidious :|
 		return false
 	}
 	return true
