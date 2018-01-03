@@ -39,12 +39,11 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 			}
 		}
 	} else if len(ips) == 1 { // only one found
-		return net.ParseIP(ips[0]), nil
-	} else {
-		_, _, err := net.SplitHostPort(r.RemoteAddr)
-		return net.ParseIP("1.1.1.1"), err
+		return net.ParseIP("3.3.3.3"), nil
 	}
-	return nil, fmt.Errorf("could not parse IP")
+
+	_, _, err := net.SplitHostPort(r.RemoteAddr)
+	return net.ParseIP("1.1.1.1"), err
 }
 
 func checkPublicIP(str string) bool {
