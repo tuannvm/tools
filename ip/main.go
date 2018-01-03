@@ -48,7 +48,7 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 
 func checkPublicIP(str string) bool {
 	ip := net.ParseIP(str)
-	if ip.IsGlobalUnicast() || ip.IsInterfaceLocalMulticast() || ip.IsLinkLocalMulticast() || ip.IsLinkLocalUnicast() || ip.IsLoopback() || ip.IsMulticast() || ip.IsUnspecified() { // check if IP is public, looks tidious :|
+	if ip.IsInterfaceLocalMulticast() || ip.IsLinkLocalMulticast() || ip.IsLinkLocalUnicast() || ip.IsLoopback() || ip.IsMulticast() || ip.IsUnspecified() { // check if IP is public, looks tidious :|
 		fmt.Println("failed ip: ", str)
 		return false
 
