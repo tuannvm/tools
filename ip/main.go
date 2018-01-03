@@ -32,26 +32,22 @@ func ipFromRequest(headers []string, r *http.Request) (net.IP, error) {
 		}
 	}
 	fmt.Println("ips:", ips)
-	if len(ips) > 1 { // no IP available in headers, use RemoteAddr instead
+	if len(ips) > 1 {
 		for index := len(ips); index > 0; index-- {
 			if checkPublicIP(ips[index-1]) { // Immediately return first public IP (from right to left) if found, see
-				return net.ParseIP("2.2.2.2"), nil
+				return net.ParseIP(ips[index-1]), nil
 			}
 		}
-	} else if len(ips) == 1 { // only one found
-		return net.ParseIP("3.3.3.3"), nil
 	}
 
-	_, _, err := net.SplitHostPort(r.RemoteAddr)
-	return net.ParseIP("1.1.1.1"), err
+	host, _, err := net.SplitHostPort(r.RemoteAddr) // no IP available in headers, use RemoteAddr instead
+	return net.ParseIP(host), err
 }
 
 func checkPublicIP(str string) bool {
 	ip := net.ParseIP(str)
 	if ip.IsInterfaceLocalMulticast() || ip.IsLinkLocalMulticast() || ip.IsLinkLocalUnicast() || ip.IsLoopback() || ip.IsMulticast() || ip.IsUnspecified() { // check if IP is public, looks tidious :|
-		fmt.Println("failed ip: ", str)
 		return false
-
 	}
 	return true
 }
