@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"os"
 	"testing"
 )
 
@@ -36,4 +37,26 @@ func TestIsValidEmail(t *testing.T) {
 			}
 		}
 	}
+}
+
+func TestSavetoCSV(t *testing.T) {
+	data := [][]string{
+		{
+			"Name",
+			"Age",
+			"Gender",
+		},
+		{
+			"Jane Doe",
+			"51",
+			"Male",
+		},
+	}
+	file, err := os.Create("test.csv")
+	if err != nil {
+		t.Error("error creating file")
+	}
+	defer file.Close()
+
+	SaveToCsv(file, data)
 }
