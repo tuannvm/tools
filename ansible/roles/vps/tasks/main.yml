@@ -1,0 +1,5 @@
+---
+- name: Install os dependancies
+  apt:
+    name: "{{ apt_packages }}"
+    update_cache: yes

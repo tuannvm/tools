@@ -1,0 +1,6 @@
+---
+# defaults file for vps
+apt_packages:
+  - curl
+  - neovim
+  - tmux

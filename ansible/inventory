@@ -1,0 +1,2 @@
+[vps]
+me ansible_become=true
