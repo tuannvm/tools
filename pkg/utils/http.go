@@ -9,11 +9,18 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 )
 
 // Client struct type
 type Client struct {
-	client *http.Client
+	Client *http.Client
+	Addr   string
+}
+
+// NewClient returns a client at the specified url.
+func NewClient(uri string, cli *http.Client) *Client {
+	return &Client{cli, strings.TrimSuffix(uri, "/")}
 }
 
 // Get helper function for making an http GET request.
@@ -75,7 +82,7 @@ func (c *Client) Open(rawurl, method string, in, out interface{}) (io.ReadCloser
 		req.Header.Set("Content-Length", strconv.Itoa(len(decoded)))
 		req.Header.Set("Content-Type", "application/json")
 	}
-	resp, err := c.client.Do(req)
+	resp, err := c.Client.Do(req)
 	if err != nil {
 		return nil, err
 	}
