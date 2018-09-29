@@ -9,7 +9,7 @@
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/darwin/amd64/kubectl
     dest: /usr/local/bin/
-    mode: 0644
+    mode: 0755
   become: yes
 
 - name: install helm
@@ -28,7 +28,7 @@
         remote_src: yes
         src: /tmp/linux-amd64/helm
         dest: /usr/local/bin
-        mode: 0644
+        mode: 0755
       become: yes
   always:
     - name: cleanup...
