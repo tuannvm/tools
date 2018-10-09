@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/csv"
 	"io"
+	"reflect"
 	"regexp"
 )
 
@@ -21,4 +22,21 @@ func SaveToCsv(w io.Writer, data [][]string) error {
 		return err
 	}
 	return nil
+}
+
+// SliceExists check if element exists
+func SliceExists(slice interface{}, item interface{}) bool {
+	s := reflect.ValueOf(slice)
+
+	if s.Kind() != reflect.Slice {
+		panic("SliceExists() given a non-slice type")
+	}
+
+	for i := 0; i < s.Len(); i++ {
+		if s.Index(i).Interface() == item {
+			return true
+		}
+	}
+
+	return false
 }
