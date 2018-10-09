@@ -7,5 +7,5 @@ import (
 
 func main() {
 	client := awsutils.New(&aws.Config{})
-	client.DeleteRoute53Records("sandbox.honestbee.com", "internal", []string{"TXT", "A"})
+	client.DeleteRoute53Records("example.com", "internal", []string{"TXT", "A"})
 }
