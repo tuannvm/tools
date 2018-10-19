@@ -1,0 +1,115 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ template "fullname" . }}
+  labels:
+    {{- include "labels.standard" . | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+        release: {{ .Release.Name }}
+{{- with .Values.podAnnotations }}
+      annotations:
+{{ toYaml . | indent 8 }}
+{{- end }}
+    spec:
+      serviceAccountName: {{ template "fullname" . }}
+      containers:
+        - name: keel
+          # Note that we use appVersion to get images tag.
+          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/keel"]
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+{{- if .Values.polling.enabled }}
+            # Enable polling
+            - name: POLL
+              value: "1"
+{{- else }}
+            # Disable polling
+            - name: POLL
+              value: "0"
+{{- end }}
+{{- if .Values.helmProvider.enabled }}
+            # Enable/disable Helm provider
+            - name: HELM_PROVIDER
+              value: "1"
+            - name: TILLER_ADDRESS
+              value: "{{ .Values.helmProvider.tillerAddress }}"
+{{- end }}
+{{- if .Values.webhook.enabled }}
+            # Enable webhook endpoint
+            - name: WEBHOOK_ENDPOINT
+              value: "{{ .Values.webhook.endpoint }}"
+{{- end }}
+            - name: NOTIFICATION_LEVEL
+              value: "{{ .Values.notificationLevel }}"
+{{- if .Values.debug }}
+            # Enable debug logging
+            - name: DEBUG
+              value: "1"
+{{- end }}
+{{- if .Values.insecureRegistry }}
+            # Enable insecure registries
+            - name: INSECURE_REGISTRY
+              value: "{{ .Values.insecureRegistry }}"
+ {{- end }}
+{{- if .Values.aws.region }}
+            - name: AWS_REGION
+              value: "{{ .Values.aws.region }}"
+{{- end }}
+          ports:
+            - containerPort: 9300
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 9300
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+{{- if .Values.webhookRelay.enabled }}
+        - name: webhookrelayd
+          image: "{{ .Values.webhookRelay.image.repository }}:{{ .Values.webhookRelay.image.tag }}"
+          imagePullPolicy: {{ .Values.webhookRelay.image.pullPolicy }}
+          command: ["/relayd"]
+          env:
+            - name: KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}-webhookrelay
+                  key: key
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "fullname" . }}-webhookrelay
+                  key: secret
+            - name: BUCKET
+              value: "{{ .Values.webhookRelay.bucket }}"
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+{{- end }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
