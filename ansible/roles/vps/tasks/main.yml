@@ -1,4 +1,6 @@
 ---
+- include: ssh.yml
+
 - name: add neovim ppa
   apt_repository:
     repo: ppa:neovim-ppa/stable
