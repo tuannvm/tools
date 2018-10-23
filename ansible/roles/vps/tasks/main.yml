@@ -45,4 +45,12 @@
         path: /tmp/linux-amd64
         state: absent
 
+- name: Synchronize and delete files in dest.
+  synchronize:
+    src: "{{lookup('env', 'HOME')}}/.config/"
+    dest: "~/.config/"
+    copy_links: yes
+    delete: yes
+    recursive: yes
+
 - include: external.yml
