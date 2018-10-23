@@ -149,3 +149,20 @@ func (client *Client) DeleteRoute53Record(zoneID *string, record *route53.Resour
 
 	return err
 }
+
+// CreateRoute53Zone create route53 hosted zone
+func (client *Client) CreateRoute53Zone(name string, private bool) error {
+
+	output, err := client.Route53.CreateHostedZoneWithContext(client.Context, &route53.CreateHostedZoneInput{
+		CallerReference: aws.String(utils.RandomString(12)),
+		Name:            aws.String(name),
+	})
+	if err != nil {
+		return err
+	}
+
+	client.Route53.AssociateVPCWithHostedZoneWithContext(client.Context, &route53.AssociateVPCWithHostedZoneInput{
+		HostedZoneId: output.HostedZone.Id,
+	})
+	return nil
+}

@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/csv"
 	"io"
+	"math/rand"
 	"reflect"
 	"regexp"
 )
@@ -39,4 +40,13 @@ func SliceExists(slice interface{}, item interface{}) bool {
 	}
 
 	return false
+}
+
+// RandomString generate fixed length random string
+func RandomString(len int) string {
+	bytes := make([]byte, len)
+	for i := 0; i < len; i++ {
+		bytes[i] = byte(65 + rand.Intn(25)) //A=65 and Z = 65+25
+	}
+	return string(bytes)
 }
