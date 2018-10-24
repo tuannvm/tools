@@ -6,61 +6,10 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/iam"
 	"github.com/aws/aws-sdk-go/service/route53"
 	"github.com/tuannvm/tools/pkg/utils"
 )
-
-// Config struct type
-type Config struct {
-	AccessKey, SecretKey, Region string
-}
-
-// Client struct type
-type Client struct {
-	IAM     *iam.IAM
-	Route53 *route53.Route53
-	Context aws.Context
-}
-
-// NewConfig create *aws.Config to use with session
-func NewConfig(config *Config) *aws.Config {
-	// combine many providers in case some is missing
-	creds := credentials.NewChainCredentials([]credentials.Provider{
-		// use static access key & private key if available
-		&credentials.StaticProvider{
-			Value: credentials.Value{
-				AccessKeyID:     config.AccessKey,
-				SecretAccessKey: config.SecretKey,
-			},
-		},
-		// fallback to default aws environment variables
-		&credentials.EnvProvider{},
-		// read aws config file $HOME/.aws/credentials
-		&credentials.SharedCredentialsProvider{},
-	})
-
-	awsConfig := aws.NewConfig()
-	awsConfig.WithCredentials(creds)
-	awsConfig.WithRegion(config.Region)
-
-	return awsConfig
-}
-
-// New create *iam client from specific *aws.Config
-func New(awsConfig *aws.Config) *Client {
-	ctx := aws.BackgroundContext()
-	sess := session.Must(session.NewSession(awsConfig))
-	iam := iam.New(sess)
-	route53 := route53.New(sess)
-	return &Client{
-		IAM:     iam,
-		Route53: route53,
-		Context: ctx,
-	}
-}
 
 // listUsers list all users
 func (client *Client) listUsers() {
@@ -160,9 +109,10 @@ func (client *Client) CreateRoute53Zone(name string, private bool) error {
 	if err != nil {
 		return err
 	}
-
-	client.Route53.AssociateVPCWithHostedZoneWithContext(client.Context, &route53.AssociateVPCWithHostedZoneInput{
-		HostedZoneId: output.HostedZone.Id,
-	})
+	if !private {
+		client.Route53.AssociateVPCWithHostedZoneWithContext(client.Context, &route53.AssociateVPCWithHostedZoneInput{
+			HostedZoneId: output.HostedZone.Id,
+		})
+	}
 	return nil
 }
