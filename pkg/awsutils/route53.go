@@ -105,6 +105,9 @@ func (client *Client) CreateRoute53Zone(name string, private bool, vpc *route53.
 	output, err := client.Route53.CreateHostedZoneWithContext(client.Context, &route53.CreateHostedZoneInput{
 		CallerReference: aws.String(name),
 		Name:            aws.String(name),
+		HostedZoneConfig: &route53.HostedZoneConfig{
+			PrivateZone: aws.Bool(private),
+		},
 	})
 	if err != nil {
 		return nil, err
