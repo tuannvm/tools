@@ -110,10 +110,14 @@ func (client *Client) CreateRoute53Zone(name string, private bool, vpc *route53.
 		return nil, err
 	}
 	if !private {
-		client.Route53.AssociateVPCWithHostedZoneWithContext(client.Context, &route53.AssociateVPCWithHostedZoneInput{
+		_, err := client.Route53.AssociateVPCWithHostedZoneWithContext(client.Context, &route53.AssociateVPCWithHostedZoneInput{
 			HostedZoneId: output.HostedZone.Id,
 			VPC:          vpc,
 		})
+
+		if err != nil {
+			return nil, err
+		}
 	}
 	return output.HostedZone, nil
 }
