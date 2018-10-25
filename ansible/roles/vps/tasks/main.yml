@@ -14,6 +14,14 @@
     autoclean: yes
   become: yes
 
+- name: Download dein installer script
+  get_url:
+    url: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+    dest: installer.sh
+    mode: 0755
+    
+- shell: bash ~/installer.sh ~/.cache/dein
+
 - name: install kubectl
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/darwin/amd64/kubectl
@@ -47,10 +55,16 @@
 
 - name: Synchronize and delete files in dest.
   synchronize:
-    src: "{{lookup('env', 'HOME')}}/.config/"
+    src: "{{lookup('env', 'HOME')}}/.config/nvim"
     dest: "~/.config/"
     copy_links: yes
     delete: yes
     recursive: yes
 
+- name: create home symlink
+  file:
+    dest: "{{lookup('env', 'MAC_PATH')}}"
+    src: "~"
+    state: link
+    
 - include: external.yml
