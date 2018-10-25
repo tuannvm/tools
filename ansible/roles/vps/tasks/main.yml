@@ -35,6 +35,15 @@
 - shell: bash ~/installer.sh ~/.cache/dein
   when: dein_path.stat.exists == False 
 
+- block:
+  - name: use nvim for vi
+    alternatives: name=vi path=/usr/bin/nvim
+  - name: use nvim for vim
+    alternatives: name=vim path=/usr/bin/nvim
+  - name: use nvim for editor
+    alternatives: name=editor path=/usr/bin/nvim
+  become: yes
+
 - name: install kubectl
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
@@ -77,6 +86,7 @@
     - { src: "{{lookup('env', 'HOME')}}/.config/nvim", dest: "~/.config/" }
     - { src: "~/.oh-my-zsh/", dest: "~/.oh-my-zsh/" }
     - { src: "~/.zshrc", dest: "~/.zshrc" }
+    - { src: "~/Downloads/tuannvm.hp.ovpn", dest: "~/hb.ovpn" }
 
 - stat:
     path: "{{lookup('env', 'MAC_PATH')}}"
