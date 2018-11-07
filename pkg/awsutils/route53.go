@@ -1,6 +1,7 @@
 package awsutils
 
 import (
+	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -39,7 +40,7 @@ func (client *Client) GetHostedZoneID(domain string) (*string, error) {
 			return aws.String(r.FindStringSubmatch(aws.StringValue(hostZone.Id))[1]), nil
 		}
 	}
-	return nil, nil
+	return nil, errors.New("Record not found")
 }
 
 // ListRoute53Records list all matched record in specific zone
