@@ -72,7 +72,7 @@ func (client *Client) DeleteRoute53Records(domain string, pattern string, record
 	for _, record := range recordsList {
 		if utils.SliceExists(recordTypes, aws.StringValue(record.Type)) {
 			fmt.Println(aws.StringValue(record.Name) + " " + aws.StringValue(record.Type))
-			err := client.DeleteRoute53Record(zoneID, record)
+			err := client.ChangeRoute53Record(zoneID, record, aws.String("DELETE"))
 			if err != nil {
 				return err
 			}
@@ -82,14 +82,14 @@ func (client *Client) DeleteRoute53Records(domain string, pattern string, record
 	return nil
 }
 
-// DeleteRoute53Record delete a single route53 record
-func (client *Client) DeleteRoute53Record(zoneID *string, record *route53.ResourceRecordSet) error {
+// ChangeRoute53Record delete a single route53 record
+func (client *Client) ChangeRoute53Record(zoneID *string, record *route53.ResourceRecordSet, action *string) error {
 	_, err := client.Route53.ChangeResourceRecordSetsWithContext(client.Context, &route53.ChangeResourceRecordSetsInput{
 		HostedZoneId: zoneID,
 		ChangeBatch: &route53.ChangeBatch{
 			Changes: []*route53.Change{
 				{
-					Action:            aws.String("DELETE"),
+					Action:            action,
 					ResourceRecordSet: record,
 				},
 			},
