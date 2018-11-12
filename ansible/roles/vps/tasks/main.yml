@@ -105,6 +105,7 @@
     - { src: "{{lookup('env', 'HOME')}}/.config/nvim", dest: "~/.config/" }
     - { src: "~/.oh-my-zsh/", dest: "~/.oh-my-zsh/" }
     - { src: "~/.zshrc", dest: "~/.zshrc" }
+    - { src: "~/.gitconfig", dest: "~/.gitconfig" }
 
 - stat:
     path: "{{lookup('env', 'MAC_PATH')}}"
