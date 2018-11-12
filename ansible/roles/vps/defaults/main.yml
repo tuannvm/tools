@@ -16,6 +16,7 @@ apt_packages:
   - python3-pip
   - openvpn
   - golang
+  - tig
 pip_packages:
   - neovim
 kubectl_version: v1.10.5
