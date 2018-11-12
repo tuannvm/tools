@@ -75,6 +75,25 @@
         path: /tmp/linux-amd64
         state: absent
 
+- name: install dep
+  block:
+    - name: download dep
+      get_url:
+        url: https://github.com/golang/dep/releases/download/{{dep_version}}/dep-linux-amd64
+        dest: /tmp/
+    - name: copy to bin
+      copy:
+        remote_src: yes
+        src: /tmp/dep-linux-amd64
+        dest: /usr/local/bin/dep
+        mode: 0755
+      become: yes
+  always:
+    - name: cleanup...
+      file:
+        path: /tmp/dep-linux-amd64
+        state: absent
+
 - name: Synchronize and delete files in dest.
   synchronize:
     src: "{{ item.src }}" 
@@ -86,7 +105,6 @@
     - { src: "{{lookup('env', 'HOME')}}/.config/nvim", dest: "~/.config/" }
     - { src: "~/.oh-my-zsh/", dest: "~/.oh-my-zsh/" }
     - { src: "~/.zshrc", dest: "~/.zshrc" }
-    - { src: "~/Downloads/tuannvm.hp.ovpn", dest: "~/hb.ovpn" }
 
 - stat:
     path: "{{lookup('env', 'MAC_PATH')}}"
