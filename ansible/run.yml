@@ -1,3 +1,49 @@
 - hosts: all
+
+  vars:
+    docker_users:
+      - "{{lookup('env', 'DOCKER_USER')}}"
+
+    # nginx
+    nginx_vhosts:
+      - listen: "443 ssl http2"
+        server_name: "tuannvm.com www.tuannvm.com"
+        filename: "main.conf"
+        state: "present"
+        extra_parameters: |
+          ssl_certificate     /etc/letsencrypt/live/tuannvm.com/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/tuannvm.com/privkey.pem;
+          ssl_protocols       TLSv1.1 TLSv1.2;
+          ssl_ciphers         HIGH:!aNULL:!MD5;
+          location ~ /github(.*) {
+            return 301 https://github.com/tuannvm;
+          }
+          location ~ /linkedin(.*) {
+            return 301 https://www.linkedin.com/in/tuannvm;
+          }
+          location ~ /blog(.*) {
+            return 301 https://medium.com/@tuannvm;
+          }
+          location ~ /twitter(.*) {
+            return 301 https://twitter.com/tuannvm;
+          }
+          location ~ /public(.*) {
+            return 301 https://drive.google.com/drive/folders/0B-6HHJ-QpWgJTlJDQVlBOEFaaXM?usp=sharing;
+          }
+
+    nginx_remove_default_vhost: true
+
+    # letsencrypt
+    certbot_admin_email: me@tuannvm.com
+    certbot_auto_renew_user: "{{lookup('env', 'SSH_USER')}}" 
+    certbot_create_if_missing: true
+    certbot_create_standalone_stop_services: []
+    certbot_certs:
+      - domains:
+          - tuannvm.com
+
   roles:
     - vps
+    - { role: geerlingguy.docker, become: true }
+    - { role: geerlingguy.certbot, become: true }
+    - { role: geerlingguy.nginx, become: true }
