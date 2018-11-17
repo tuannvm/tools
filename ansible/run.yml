@@ -42,8 +42,12 @@
       - domains:
           - tuannvm.com
 
+    # ssh
+    security_ssh_port: "{{ lookup('env','SSH_PORT') }}" 
+
   roles:
     - vps
+    - { role: geerlingguy.security, become: true }
     - { role: geerlingguy.docker, become: true }
     - { role: geerlingguy.certbot, become: true }
     - { role: geerlingguy.nginx, become: true }
