@@ -15,8 +15,20 @@
           ssl_certificate_key /etc/letsencrypt/live/tuannvm.com/privkey.pem;
           ssl_protocols       TLSv1.1 TLSv1.2;
           ssl_ciphers         HIGH:!aNULL:!MD5;
+          location ~ /(helm|kubernetes)(.*) {
+            return 301 https://gist.github.com/tuannvm/4e1bcc993f683ee275ed36e67c30ac49;
+          }
+          location ~ /terraform(.*) {
+            return 301 https://gist.github.com/tuannvm/df824b332517eba77d1f6d14e9f16622;
+          }
+          location ~ /go(.*) {
+            return 301 https://gist.github.com/tuannvm/6384d8c0de65c6c0952b391402bac856;
+          }
           location ~ /github(.*) {
             return 301 https://github.com/tuannvm;
+          }
+          location / {
+            return 301 https://me.tuannvm.com;
           }
           location ~ /linkedin(.*) {
             return 301 https://www.linkedin.com/in/tuannvm;
