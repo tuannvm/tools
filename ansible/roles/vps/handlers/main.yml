@@ -4,3 +4,20 @@
   service:
     name: sshd
     state: restarted
+
+- name: Restart dnsmasq
+  service:
+    name: dnsmasq
+    state: restarted
+  become: yes
+
+- name: Restart systemd-resolved
+  service:
+    name: systemd-resolved
+    state: restarted
+  become: yes
+
+- name: Kill dhclient
+  command: /usr/bin/killall dhclient
+  ignore_errors: yes
+  changed_when: false

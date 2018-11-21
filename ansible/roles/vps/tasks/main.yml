@@ -75,6 +75,30 @@
         path: /tmp/linux-amd64
         state: absent
 
+- name: install vault
+  block:
+    - name: download vault
+      get_url:
+        url: https://releases.hashicorp.com/vault/{{ vault_version }}/{{ vault_tgz }}
+        dest: /tmp/
+    - name: unarchive
+      unarchive:
+        copy: no
+        src: /tmp/{{ vault_tgz }}
+        dest: /tmp
+    - name: copy to bin
+      copy:
+        remote_src: yes
+        src: /tmp/vault
+        dest: /usr/local/bin
+        mode: 0755
+      become: yes
+  always:
+    - name: cleanup...
+      file:
+        path: /tmp/{{ vault_tgz }}
+        state: absent
+
 - name: install dep
   block:
     - name: download dep
@@ -125,3 +149,29 @@
   become: yes
   
 - include: external.yml
+
+- name: configure dnsmasq
+  copy:
+    dest: "/etc/dnsmasq.d/all"
+    content: "server=/#/8.8.8.8\n
+server=/internal.honestbee.com/100.64.0.10\n
+server=/internal.sumopay.com/100.64.0.10"
+  notify: "Restart dnsmasq"
+  become: yes
+
+- name: configure systemd-resolve
+  blockinfile:
+    dest: /etc/systemd/resolved.conf
+    content: "DNSStubListener=no\n
+DNS=127.0.0.1"
+  notify: "Restart systemd-resolved"
+  become: yes
+
+- name: configure dhclient
+  lineinfile:
+    path: /etc/dhcp/dhclient.conf
+    line: "prepend domain-name-servers 127.0.0.1;"
+  notify: "Kill dhclient"
+  become: yes
+
+
