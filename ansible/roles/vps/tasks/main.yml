@@ -130,6 +130,9 @@
     - { src: "~/.oh-my-zsh/", dest: "~/.oh-my-zsh/" }
     - { src: "~/.zshrc", dest: "~/.zshrc" }
     - { src: "~/.gitconfig", dest: "~/.gitconfig" }
+    - { src: "~/.tmux.conf", dest: "~/.tmux.conf" }
+    - { src: "~/.tmux.conf.local", dest: "~/.tmux.conf.local" }
+    - { src: "~/.tmux/plugins/", dest: "~/.tmux/plugins/" }
 
 - stat:
     path: "{{lookup('env', 'MAC_PATH')}}"
