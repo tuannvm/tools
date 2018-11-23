@@ -25,7 +25,8 @@ pip_packages:
 kubectl_version: v1.10.5
 helm_version: v2.8.2
 vault_version: 0.11.5
+terraform_version: 0.11.8
 dep_version: v0.5.0
 helm_tgz: 'helm-{{ helm_version }}-linux-amd64.tar.gz'
 vault_tgz: 'vault_{{ vault_version }}_linux_amd64.zip'
-terraform_version: 0.11.8
+terraform_tgz: 'terraform_{{ terraform_version }}_linux_amd64.zip'

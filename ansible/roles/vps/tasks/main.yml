@@ -1,6 +1,4 @@
 ---
-
-
 - include: ssh.yml
 
 - name: add neovim ppa
@@ -99,6 +97,30 @@
         path: /tmp/{{ vault_tgz }}
         state: absent
 
+- name: install terraform
+  block:
+    - name: download terraform
+      get_url:
+        url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/{{ terraform_tgz }}
+        dest: /tmp/
+    - name: unarchive
+      unarchive:
+        copy: no
+        src: /tmp/{{ terraform_tgz }}
+        dest: /tmp
+    - name: copy to bin
+      copy:
+        remote_src: yes
+        src: /tmp/terraform
+        dest: /usr/local/bin
+        mode: 0755
+      become: yes
+  always:
+    - name: cleanup...
+      file:
+        path: /tmp/{{ vault_tgz }}
+        state: absent
+
 - name: install dep
   block:
     - name: download dep
@@ -118,6 +140,11 @@
         path: /tmp/dep-linux-amd64
         state: absent
 
+- name: Creates directories
+  file: path={{ item }} state=directory
+  with_items:
+    - "~/.tmux/plugins/"
+
 - name: Synchronize and delete files in dest.
   synchronize:
     src: "{{ item.src }}" 
@@ -132,7 +159,7 @@
     - { src: "~/.gitconfig", dest: "~/.gitconfig" }
     - { src: "~/.tmux.conf", dest: "~/.tmux.conf" }
     - { src: "~/.tmux.conf.local", dest: "~/.tmux.conf.local" }
-    - { src: "~/.tmux/plugins/", dest: "~/.tmux/plugins/" }
+    - { src: "~/.tmux/plugins/tmux-resurrect/resurrect.tmux", dest: "~/.tmux/plugins/tmux-resurrect/resurrect.tmux" }
 
 - stat:
     path: "{{lookup('env', 'MAC_PATH')}}"
@@ -165,16 +192,6 @@ server=/internal.sumopay.com/100.64.0.10"
 - name: configure systemd-resolve
   blockinfile:
     dest: /etc/systemd/resolved.conf
-    content: "DNSStubListener=no\n
-DNS=127.0.0.1"
+    content: "DNSStubListener=no\nDNS=127.0.0.1"
   notify: "Restart systemd-resolved"
   become: yes
-
-- name: configure dhclient
-  lineinfile:
-    path: /etc/dhcp/dhclient.conf
-    line: "prepend domain-name-servers 127.0.0.1;"
-  notify: "Kill dhclient"
-  become: yes
-
-
