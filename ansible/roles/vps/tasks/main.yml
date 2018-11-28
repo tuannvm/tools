@@ -33,14 +33,6 @@
 - shell: bash ~/installer.sh ~/.cache/dein
   when: dein_path.stat.exists == False 
 
-- block:
-  - name: use nvim for vi
-    alternatives: name=vi path=/usr/bin/nvim
-  - name: use nvim for vim
-    alternatives: name=vim path=/usr/bin/nvim
-  - name: use nvim for editor
-    alternatives: name=editor path=/usr/bin/nvim
-  become: yes
 
 - name: install kubectl
   get_url:
@@ -156,10 +148,27 @@
     - { src: "{{lookup('env', 'HOME')}}/.config/nvim", dest: "~/.config/" }
     - { src: "~/.oh-my-zsh/", dest: "~/.oh-my-zsh/" }
     - { src: "~/.zshrc", dest: "~/.zshrc" }
+    - { src: "~/.aws/", dest: "~/.aws/" }
     - { src: "~/.gitconfig", dest: "~/.gitconfig" }
     - { src: "~/.tmux.conf", dest: "~/.tmux.conf" }
     - { src: "~/.tmux.conf.local", dest: "~/.tmux.conf.local" }
     - { src: "~/.tmux/plugins/tmux-resurrect/resurrect.tmux", dest: "~/.tmux/plugins/tmux-resurrect/resurrect.tmux" }
+
+- name: nvim configuration
+  block:  
+  - name: use nvim for vi
+    alternatives: name=vi path=/usr/bin/nvim
+  - name: use nvim for vim
+    alternatives: name=vim path=/usr/bin/nvim
+  - name: use nvim for editor
+    alternatives: name=editor path=/usr/bin/nvim
+  become: yes
+
+- name: nvim symlink
+  file:
+    src: ~/.config/nvim/vps.vim  
+    dest: ~/.custom.vim
+    state: link
 
 - stat:
     path: "{{lookup('env', 'MAC_PATH')}}"
