@@ -28,10 +28,10 @@
     url: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
     dest: installer.sh
     mode: 0755
-  when: dein_path.stat.exists == False 
-    
+  when: dein_path.stat.exists == False
+
 - shell: bash ~/installer.sh ~/.cache/dein
-  when: dein_path.stat.exists == False 
+  when: dein_path.stat.exists == False
 
 
 - name: install kubectl
@@ -139,7 +139,7 @@
 
 - name: Synchronize and delete files in dest.
   synchronize:
-    src: "{{ item.src }}" 
+    src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     copy_links: yes
     delete: yes
@@ -155,7 +155,7 @@
     - { src: "~/.tmux/plugins/tmux-resurrect/resurrect.tmux", dest: "~/.tmux/plugins/tmux-resurrect/resurrect.tmux" }
 
 - name: nvim configuration
-  block:  
+  block:
   - name: use nvim for vi
     alternatives: name=vi path=/usr/bin/nvim
   - name: use nvim for vim
@@ -166,7 +166,7 @@
 
 - name: nvim symlink
   file:
-    src: ~/.config/nvim/vps.vim  
+    src: ~/.config/nvim/vps.vim
     dest: ~/.custom.vim
     state: link
 
@@ -180,13 +180,13 @@
 
 - name: create home symlink
   shell: ln -s ~/ "{{lookup('env', 'MAC_PATH')}}"
-  when: home_path.stat.exists == False 
-    
+  when: home_path.stat.exists == False
+
 - name: create python3 symlink
   shell: ln -s /usr/bin/python3 /usr/local/bin/
-  when: python_path.stat.exists == False 
+  when: python_path.stat.exists == False
   become: yes
-  
+
 - include: external.yml
 
 - name: configure dnsmasq
