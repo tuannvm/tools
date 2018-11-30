@@ -8,7 +8,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "hello %s", os.Getenv("Foo"))
+		fmt.Fprintf(w, "hello %s", os.Getenv("NAME"))
 	})
 	err := http.ListenAndServe(":8888", nil)
 	fmt.Println(err)
