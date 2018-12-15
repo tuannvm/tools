@@ -149,6 +149,7 @@
     - { src: "~/.oh-my-zsh/", dest: "~/.oh-my-zsh/" }
     - { src: "~/.zshrc", dest: "~/.zshrc" }
     - { src: "~/.aws/", dest: "~/.aws/" }
+    - { src: "~/.gcp/", dest: "~/.gcp/" }
     - { src: "~/.gitconfig", dest: "~/.gitconfig" }
     - { src: "~/.tmux.conf", dest: "~/.tmux.conf" }
     - { src: "~/.tmux.conf.local", dest: "~/.tmux.conf.local" }
