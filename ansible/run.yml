@@ -63,3 +63,4 @@
     - { role: geerlingguy.docker, become: true }
     - { role: geerlingguy.certbot, become: true }
     - { role: geerlingguy.nginx, become: true }
+    - { role: wtanaka.gcloud_sdk, become: true }
