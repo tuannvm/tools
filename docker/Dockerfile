@@ -1,11 +1,11 @@
 FROM ubuntu:18.04
 
 ENV BIN_PATH=/usr/local/bin
-ENV HELM_VERSION=2.8.2
-ENV KUBECTL_VERSION=v1.10.8
+ENV HELM_VERSION=2.12.2
+ENV KUBECTL_VERSION=v1.13.0
 
 RUN apt-get update && \
-    apt-get install telnet git curl iputils-ping dnsutils traceroute net-tools iproute2 iperf3 -y
+    apt-get install telnet git curl iputils-ping dnsutils traceroute net-tools iproute2 iperf3 postgresql-client -y
 
 RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar -xzC ${BIN_PATH}/ && \
     mv $BIN_PATH/linux-amd64/helm $BIN_PATH/ && \
