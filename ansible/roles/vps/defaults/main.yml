@@ -4,6 +4,7 @@ apt_packages:
   - curl
   - neovim
   - tmux
+  - wget
   - nginx
   - mosh
   - net-tools

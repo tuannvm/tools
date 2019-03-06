@@ -42,12 +42,15 @@
           location ~ /public(.*) {
             return 301 https://drive.google.com/drive/folders/0B-6HHJ-QpWgJTlJDQVlBOEFaaXM?usp=sharing;
           }
+          location ~ /tpkt(.*) {
+            return 301 https://drive.google.com/drive/folders/1VFsVQf0h3k1B8e1RO1GQVc2V_9odgNaf?usp=sharing;
+          }
 
     nginx_remove_default_vhost: true
 
     # letsencrypt
     certbot_admin_email: me@tuannvm.com
-    certbot_auto_renew_user: "{{lookup('env', 'SSH_USER')}}" 
+    certbot_auto_renew_user: "{{lookup('env', 'SSH_USER')}}"
     certbot_create_if_missing: true
     certbot_create_standalone_stop_services: []
     certbot_certs:
@@ -55,7 +58,7 @@
           - tuannvm.com
 
     # ssh
-    security_ssh_port: "{{ lookup('env','SSH_PORT') }}" 
+    security_ssh_port: "{{ lookup('env','SSH_PORT') }}"
 
   roles:
     - vps
