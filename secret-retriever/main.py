@@ -18,7 +18,7 @@ def write_secrets_to_file(client, secret_path, file_path):
 
     with open(file_path, 'w') as file:
         for k, v in secrets.items():
-            file.write(f'{k}="{v}"\n')
+            file.write(f'{k}=\'{v}\'\n')
 
 
 def main():
