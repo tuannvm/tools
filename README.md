@@ -5,7 +5,7 @@ Just some useful stuffs to make DevOps's life easier
 
 ## Statuses
 
-[![GCE Proxy](https://quay.io/repository/tuannvm/gce-proxy/status "GCE Proxy")](https://quay.io/repository/tuannvm/gce-proxy)
+[GCE Proxy](./docker/gce-proxy): [![GCE Proxy](https://quay.io/repository/tuannvm/gce-proxy/status "GCE Proxy")](https://quay.io/repository/tuannvm/gce-proxy)
 
 ## Supports
 
