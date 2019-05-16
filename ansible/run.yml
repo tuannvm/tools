@@ -39,11 +39,20 @@
           location ~ /twitter(.*) {
             return 301 https://twitter.com/tuannvm;
           }
+          location ~ /90s-devops(.*) {
+            return 301 "https://90seconds.atlassian.net/secure/RapidBoard.jspa?rapidView=62";
+          }
+          location ~ /90s-weekly-report(.*) {
+            return 301 "https://90seconds.atlassian.net/browse/PC-965?filter=10101&jql=status%20in%20(Archived%2C%20CANCELLED%2C%20%22Development%20Complete%22%2C%20%22Ready%20for%20Development%22%2C%20%22Ready%20for%20Release%22)%20AND%20component%20in%20(%22Data%20Core%20Infrastructure%22%2C%20devops)%20AND%20assignee%20in%20(tommy)%20ORDER%20BY%20updated%20DESC";
+          }
           location ~ /public(.*) {
             return 301 https://drive.google.com/drive/folders/0B-6HHJ-QpWgJTlJDQVlBOEFaaXM?usp=sharing;
           }
           location ~ /tpkt(.*) {
             return 301 https://drive.google.com/drive/folders/1VFsVQf0h3k1B8e1RO1GQVc2V_9odgNaf?usp=sharing;
+          }
+          location ~ /calendar(.*) {
+            return 301 https://calendly.com/tuannvm/;
           }
 
     nginx_remove_default_vhost: true
