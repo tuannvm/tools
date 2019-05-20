@@ -1,0 +1,11 @@
+<!-- forms.html -->
+{{if .Success}}
+<h1>Thanks for your message!</h1>
+{{else}}
+<h1>Please input gist url</h1>
+<form method="POST">
+  <label>Gist url:</label><br />
+  <input type="text" name="url"><br />
+  <input type="submit">
+</form>
+{{end}}
