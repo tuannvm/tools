@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"io"
 	"math/rand"
+	"net/url"
 	"reflect"
 	"regexp"
 )
@@ -13,6 +14,15 @@ var mailRegexp = regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`
 // IsEmailValid check if provided email is valid
 func IsEmailValid(email string) bool {
 	return mailRegexp.MatchString(email)
+}
+
+// IsURLValid check if url is correctly formatted
+func IsURLValid(link string) bool {
+	_, err := url.ParseRequestURI(link)
+	if err != nil {
+		return false
+	}
+	return true
 }
 
 // SaveToCsv take string map and write to csv file
