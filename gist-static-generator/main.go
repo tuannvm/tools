@@ -15,10 +15,10 @@ func defaultHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "404 not found", http.StatusNotFound)
 	}
 
-	tmpl := template.Must(template.ParseFiles("form.html"))
+	form := template.Must(template.ParseFiles("form.html"))
 	switch r.Method {
 	case "GET":
-		tmpl.Execute(w, nil)
+		form.Execute(w, nil)
 		return
 	case "POST":
 		if err := r.ParseForm(); err != nil {
@@ -36,7 +36,12 @@ func defaultHandler(w http.ResponseWriter, r *http.Request) {
 		if len(fileNames) > 0 {
 			fileName = strings.ReplaceAll(fileNames[1], "-", ".")
 		}
-		fmt.Fprintf(w, "static gist url: https://gist.githubusercontent.com%v/raw/%v", url.Path, fileName)
+		form.Execute(w, struct {
+			Success bool
+			Url     string
+		}{true,
+			fileName})
+		// fmt.Fprintf(w, "static gist url: https://gist.githubusercontent.com%v/raw/%v", url.Path, fileName)
 
 	default:
 		fmt.Fprintf(w, "only get and post are supported")
