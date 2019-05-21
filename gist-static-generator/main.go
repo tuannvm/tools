@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	netUrl "net/url"
+	"os"
 	"regexp"
 	"strings"
 )
@@ -38,10 +39,11 @@ func defaultHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		form.Execute(w, struct {
 			Success bool
-			Url     string
-		}{true,
-			fileName})
-		// fmt.Fprintf(w, "static gist url: https://gist.githubusercontent.com%v/raw/%v", url.Path, fileName)
+			URL     string
+		}{
+			true,
+			fmt.Sprintf("https://gist.githubusercontent.com%v/raw/%v", url.Path, fileName),
+		})
 
 	default:
 		fmt.Fprintf(w, "only get and post are supported")
@@ -50,6 +52,6 @@ func defaultHandler(w http.ResponseWriter, r *http.Request) {
 }
 func main() {
 	http.HandleFunc("/", defaultHandler)
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(os.Getenv("PORT"), nil)
 
 }

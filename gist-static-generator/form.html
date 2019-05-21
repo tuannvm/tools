@@ -11,26 +11,30 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>Gist Static Generator</title>
 </head>
 
 <body>
 
   {{if .Success}}
   <!-- Target -->
-  <input id="url" value="{{ .Url }}" readonly />
+  <input size="64" id="url" value="{{ .URL }}" readonly />
 
   <!-- Trigger -->
-  <button class="btn" data-clipboard-target="#url">
+  <button class="btn" data-clipboard-target="#url" data-trigger="click" data-toggle="tooltip" data-placement="bottom"
+    title="link copied!">
     <img src="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clippy.svg" alt="Copy to clipboard">
   </button>
+  <br />
+  <button onclick="goBack()">Back</button>
+
   {{else}}
   <h1>Please input gist url</h1>
   <form method="POST">
-    <label>Gist url:</label><br />
-    <input type="url" name="url" required pattern=".*gist\.github\.com.*"><br />
+    <input type="url" name="url" required pattern=".*gist\.github\.com.*">
     <input type="submit">
   </form>
+  <small>Example: https://gist.github.com/choco-bot/d734ad7c81b450ac416c129d53f2915d#file-filessnapshot-xml</small>
   {{end}}
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -44,6 +48,14 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+  <script>new ClipboardJS('.btn');
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+    function goBack() {
+      window.history.back();
+    }
+  </script>
 
 </body>
 
