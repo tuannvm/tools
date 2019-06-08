@@ -23,11 +23,11 @@ apt_packages:
 pip_packages:
   - neovim
   - neovim-remote
-kubectl_version: v1.10.5
+kubectl_version: v1.14.0
 helm_version: v2.8.2
-vault_version: 0.11.5
-terraform_version: 0.11.8
-dep_version: v0.5.0
+vault_version: 1.1.3
+terraform_version: 0.12.0
+dep_version: v0.5.3
 helm_tgz: 'helm-{{ helm_version }}-linux-amd64.tar.gz'
 vault_tgz: 'vault_{{ vault_version }}_linux_amd64.zip'
 terraform_tgz: 'terraform_{{ terraform_version }}_linux_amd64.zip'
