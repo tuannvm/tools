@@ -69,7 +69,6 @@
 
     # ssh
     security_ssh_port: "{{ lookup('env','SSH_PORT') }}"
-    security_ssh_x11_forwarding: "yes"
 
   roles:
     - vps
