@@ -1,0 +1,66 @@
+[include]
+        path = ~/.gitalias.txt
+[filter "media"]
+        clean = git-media-clean %f
+        smudge = git-media-smudge %f
+[user]
+        name = Tommy Nguyen
+        email = me@tuannvm.com
+        username = tuannvm
+[push]
+        default = simple
+[core]
+        excludesfile = /Users/tuannvm/.gitignore_global
+[filter "lfs"]
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+
+[alias]
+        tree = log --graph --decorate --pretty=oneline --abbrev-commit
+        up = "!git remote update -p; git merge --ff-only @{u}"
+[color "diff-highlight"]
+        oldNormal = red bold
+        oldHighlight = red bold 52
+        newNormal = green bold
+        newHighlight = green bold 22
+[diff]
+        tool = vscode
+[merge]
+        tool = vscode
+[mergetool]
+        keepBackup = false
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+[diff "sopsdiffer"]
+        textconv = sops -d
+[gpg]
+        program = /usr/local/bin/gpg
+[http]
+[https]
+[http]
+[socks]
+[mergetool "vscode"]
+        cmd = code --wait $MERGED
+[difftool "vscode"]
+        cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool "diffconflicts"]
+        cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+        trustExitCode = true
+[github]
+        user = tuannvm
