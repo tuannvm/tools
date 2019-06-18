@@ -26,12 +26,9 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
   call dein#add('tpope/vim-commentary')
 " resize
   " call dein#add('simeji/winresizer')
-" copy over ssh
-""  call dein#add('fcpg/vim-osc52')
 " auto complete
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neoinclude.vim')
-  " call dein#add('neoclide/coc.nvim', {'build': './install.sh'})
 " linting
   call dein#add('w0rp/ale')
 " textobj
@@ -42,12 +39,12 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " grep
   call dein#add('mhinz/vim-grepper')
   call dein#add('skwp/greplace.vim')
-" python support  
+" python support
   call dein#add('Chiel92/vim-autoformat')
 " gist support
   call dein#add('mattn/gist-vim')
   call dein#add('mattn/webapi-vim')
-" go support  
+" go support
   call dein#add('fatih/vim-go')
   " call dein#add('jodosha/vim-godebug')
   " call dein#add('zchee/deoplete-go', {'build': 'make'})
@@ -56,13 +53,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 "  call dein#add('majutsushi/tagbar')
 " sort
   call dein#add('christoomey/vim-sort-motion')
-" ansible
-"  call dein#add('pearofducks/ansible-vim')
 " markdown
-  " call dein#add('dhruvasagar/vim-table-mode')
-  " call dein#add('tuannvm/vim-markdown-toc')
-  " call dein#add('previm/previm')
-"  call dein#add('tyru/open-browser.vim')
   call dein#add('plasticboy/vim-markdown')
 
 " change content inside parathense
@@ -85,6 +76,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " terminal
   call dein#add('mklabs/split-term.vim')
   call dein#add('wincent/terminus')
+  call dein#add('nikvdp/neomux')
 " difftool
   call dein#add('whiteinge/diffconflicts')
 " statusbar
@@ -127,4 +119,3 @@ nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 source ~/.config/nvim/my_configs.vim
 " source ~/.config/nvim/basic.vim
-

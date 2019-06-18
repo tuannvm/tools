@@ -5,6 +5,19 @@ endtry
 
 """ basic
 
+" Auto change dir (help with buffer name)
+" https://vi.stackexchange.com/questions/3314/short-buffer-name
+set autochdir
+
+" Auto close brackets
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 " mattn/gist-vim
 let g:gist_detect_filetype = 1
 let g:gist_show_privates = 1
@@ -470,10 +483,10 @@ nmap <silent> <leader>a <Plug>(ale_next_wrap)
 
 function! StatusLine(current, width)
   return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
-        \ . ' %f%h%w%m%r '
+        \ . ' %{WindowNumber()} %{zoom#statusline()} %f%h%w%m%r '
         \ . (a:current ? '%#CrystallineFill# %{fugitive#head()} ' : '')
         \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
-        \ . (a:width > 80 ? ' %{&ft}[%{&enc}][%{&ffs}] %{zoom#statusline()} %l/%L %c%V %P ' : ' ')
+        \ . (a:width > 80 ? ' [%{&enc}][%{&ffs}] %l/%L %P ' : ' ')
 endfunction
 
 function! TabLine()
@@ -485,15 +498,9 @@ let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_tabline_fn = 'TabLine'
 let g:crystalline_theme = 'default'
 
-set showtabline=2
+set showtabline=1
 set laststatus=2
 
-" let g:airline#extensions#tabline#enabled = 0
-" let g:airline_extensions = ['branch', 'tabline']
-" let g:airline_section_z = ''
-" let g:airline_theme='ayu_mirage'
-" let airline#extensions#tabline#tabs_label = ''
-" let airline#extensions#tabline#show_splits = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
