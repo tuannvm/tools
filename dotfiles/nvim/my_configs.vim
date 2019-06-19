@@ -5,6 +5,13 @@ endtry
 
 """ basic
 
+" Change tab name
+function! GuiTabLabel()
+  return exists('t:label') ? t:label : ''
+endfunction
+set guitablabel=%{GuiTabLabel()}
+set go+=e
+
 " Auto change dir (help with buffer name)
 " https://vi.stackexchange.com/questions/3314/short-buffer-name
 set autochdir
@@ -490,7 +497,7 @@ function! StatusLine(current, width)
 endfunction
 
 function! TabLine()
-  let l:vimlabel = has("nvim") ?  " NVIM " : " VIM "
+  let l:vimlabel = " TOKI "
   return crystalline#bufferline(2, len(l:vimlabel), 1) . '%=%#CrystallineTab# ' . l:vimlabel
 endfunction
 
