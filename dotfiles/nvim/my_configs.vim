@@ -5,20 +5,11 @@ endtry
 
 """ basic
 
-" Change tab name
-function! GuiTabLabel()
-  return exists('t:label') ? t:label : ''
-endfunction
-set guitablabel=%{GuiTabLabel()}
-set go+=e
-
 " Auto change dir (help with buffer name)
 " https://vi.stackexchange.com/questions/3314/short-buffer-name
-set autochdir
+" set autochdir
 
 " Auto close brackets
-inoremap " ""<left>
-inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
@@ -46,16 +37,6 @@ set nocompatible
 " repeat substitution
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
-
-""" copy over ssh
-" xmap <F7> y:call SendViaOSC52(getreg('"'))<cr>
-
-""" fading
-let g:vimade = {
-      \ "fadelevel": 0.3,
-      \ "checkinterval": 5000,
-      \ "usecursorhold": 0,
-      \ }
 
 """ leader key
 " let mapleader="<M>"
@@ -303,7 +284,7 @@ nmap <F8> :TagbarToggle <CR>
 
 "" let @p='i ^[p']'
 autocmd BufRead,BufNewFile */templates/*.yaml,*/templates/*.tpl set ft=helm
-autocmd BufEnter term://* startinsert
+autocmd BufEnter term://* :Neomux startinsert
 
 
 " let g:UltiSnipsExpandTrigger="<tab>"

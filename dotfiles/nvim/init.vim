@@ -24,8 +24,6 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
   call dein#add('dhruvasagar/vim-zoom')
 " for comment
   call dein#add('tpope/vim-commentary')
-" resize
-  " call dein#add('simeji/winresizer')
 " auto complete
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neoinclude.vim')
@@ -71,7 +69,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " helm
   call dein#add('towolf/vim-helm')
 " fuzzy search
-  call dein#add('junegunn/fzf.vim')
+"  call dein#add('junegunn/fzf.vim')
 "  call dein#add('junegunn/fzf', {'build': './install --all'})
 " terminal
   call dein#add('mklabs/split-term.vim')
