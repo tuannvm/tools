@@ -2,6 +2,7 @@
 
 set -e
 
+mkdir -p ~/.cloudshell
 touch ~/.cloudshell/no-apt-get-warning
 
 BIN_PATH=/usr/local/bin
