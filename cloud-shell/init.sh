@@ -6,7 +6,7 @@ mkdir -p ~/.cloudshell
 touch ~/.cloudshell/no-apt-get-warning
 
 BIN_PATH=/usr/local/bin
-HELM_VERSION=2.12.2
+HELM_VERSION=v2.14.0
 KUBECTL_VERSION=v1.13.0
 TERRAFORM_VERSION=0.12.5
 
@@ -17,13 +17,13 @@ mkdir -p $BIN_PATH
 
 cd /tmp/
 
-curl -S -L -f https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar -xzC ${BIN_PATH}/ && \
-    mv $BIN_PATH/linux-amd64/helm $BIN_PATH/ && \
-    rm -rf $BIN_PATH/linux-amd64/
-
 curl -S -L -f https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o ${BIN_PATH}/kubectl && \
-    chmod +x ${BIN_PATH}/kubectl
+    sudo chmod +x ${BIN_PATH}/kubectl
 
-curl -S -L -f https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip | bsdtar -xvf- -C $(BIN_PATH)
+curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip > terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
+    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin && \
+    wget -q https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > ${BIN_PATH}/helm && \
+    chmod +x ${BIN_PATH}/helm && \
+    rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 cd --
