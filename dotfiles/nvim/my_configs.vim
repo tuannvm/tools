@@ -95,14 +95,14 @@ augroup END
 let g:vim_json_syntax_conceal = 0
 
 """ NERDTree
-map <C-n> :NERDTreeTabsToggle<CR><C-w><C-w>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeChDirMode=2
-let g:NERDTreeWinSize=20
-let g:NERDTreeDirArrowExpandable = '├'
-let g:NERDTreeDirArrowCollapsible = '└'
-let g:NERDTreeMapActivateNode = '<tab>'
-let g:NERDTreeShowHidden = 1
+" map <C-n> :NERDTreeTabsToggle<CR><C-w><C-w>
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" let NERDTreeChDirMode=2
+" let g:NERDTreeWinSize=20
+" let g:NERDTreeDirArrowExpandable = '├'
+" let g:NERDTreeDirArrowCollapsible = '└'
+" let g:NERDTreeMapActivateNode = '<tab>'
+" let g:NERDTreeShowHidden = 1
 " au VimEnter *  NERDTree | wincmd p
 
 """ use terminal
@@ -147,10 +147,8 @@ set splitright
 set conceallevel=0
 set concealcursor=niv
 
-set list lcs=tab:\.\
-
-
-
+set list
+set listchars=tab:!·,trail:·,
 "let g:indentLine_char = ''
 "let g:indentLine_first_char = ''
 "let g:indentLine_showFirstIndentLevel = 1
@@ -169,100 +167,24 @@ set list lcs=tab:\.\
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 
-""""" AUTO COMPLETE
-
-" let $NVIM_COC_LOG_LEVEL = 'debug'
-"
-" " Use tab for trigger completion with characters ahead and navigate.
-" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-"
-" " Use <c-space> to trigger completion.
-" inoremap <silent><expr> <c-space> coc#refresh()
-"
-" " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" " Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"
-" " Use `[c` and `]c` to navigate diagnostics
-" nmap <silent> [c <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]c <Plug>(coc-diagnostic-next)
-"
-" " Remap keys for gotos
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-"
-" " Use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-"
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-"
-" " Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-"
-" " Remap for rename current word
-" nmap <leader>rn <Plug>(coc-rename)
-"
-" " Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-"
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
-"
-" " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
-"
-" " Remap for do codeAction of current line
-" nmap <leader>ac  <Plug>(coc-codeaction)
-" " Fix autofix problem of current line
-" nmap <leader>qf  <Plug>(coc-fix-current)
-"
-" " Use `:Format` to format current buffer
-" command! -nargs=0 Format :call CocAction('format')
-"
-" " Use `:Fold` to fold current buffer
-" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
 
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 " let g:deoplete#disable_auto_complete = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" enter will not move to newline
-inoremap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
 " deoplete.nvim recommend
 set completeopt+=noselect
+let g:deoplete#sources#go#gocode_binary = '/Users/tuannvm/golang/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 
 """
 
@@ -368,9 +290,9 @@ inoremap <A-left> <Esc>:tabprevious<CR>
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
-" let g:LanguageClient_serverCommands = {
-"       \ 'go': ['go-langserver'],
-"       \ }
+let g:LanguageClient_serverCommands = {
+      \ 'go': ['go-langserver'],
+      \ }
 
 """ go language
 let g:go_version_warning = 0
@@ -380,8 +302,6 @@ let s:tlist_def_go_settings = 'go;g:enum;s:struct;u:union;t:type;' .
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
-" gocode
-let g:deoplete#sources#go#gocode_binary = '/Users/tuannvm/golang/bin/gocode'
 
 let g:tagbar_type_go = {
       \ 'ctagstype' : 'go',
@@ -470,7 +390,7 @@ nmap <silent> <leader>a <Plug>(ale_next_wrap)
 function! StatusLine(current, width)
   return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
         \ . ' %{WindowNumber()} %{zoom#statusline()} %f%h%w%m%r '
-        \ . (a:current ? '%#CrystallineFill# %{fugitive#head()} ' : '')
+        \ . (a:current ? '%#CrystallineFill# ' : '')
         \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
         \ . (a:width > 80 ? ' [%{&enc}][%{&ffs}] %l/%L %P ' : ' ')
 endfunction

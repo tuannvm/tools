@@ -47,8 +47,8 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " go support
   call dein#add('fatih/vim-go')
   " call dein#add('jodosha/vim-godebug')
-  " call dein#add('zchee/deoplete-go', {'build': 'make'})
-  " call dein#add('autozimu/LanguageClient-neovim', {'build': 'bash install.sh'})
+  call dein#add('deoplete-plugins/deoplete-go', {'build': 'make'})
+  call dein#add('autozimu/LanguageClient-neovim', {'build': 'bash install.sh'})
 " function tagbar
 "  call dein#add('majutsushi/tagbar')
 " sort
@@ -60,8 +60,8 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 "  call dein#add('wellle/targets.vim')
 " git support
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('shumphrey/fugitive-gitlab.vim')
+"  call dein#add('tpope/vim-fugitive')
+"  call dein#add('shumphrey/fugitive-gitlab.vim')
 " terraform support
   call dein#add('hashivim/vim-terraform')
 " theme
