@@ -284,8 +284,6 @@ nmap <F8> :TagbarToggle <CR>
 
 "" let @p='i ^[p']'
 autocmd BufRead,BufNewFile */templates/*.yaml,*/templates/*.tpl set ft=helm
-autocmd BufEnter term://* :Neomux startinsert
-
 
 " let g:UltiSnipsExpandTrigger="<tab>"
 " let g:neosnippet#disable_runtime_snippets = 1

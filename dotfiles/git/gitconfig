@@ -64,3 +64,5 @@
         trustExitCode = true
 [github]
         user = tuannvm
+[init]
+        templatedir = ~/.git-templates

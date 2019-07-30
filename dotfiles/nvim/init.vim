@@ -27,8 +27,10 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " auto complete
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neoinclude.vim')
+" highlight
+  call dein#add('thiagoalessio/rainbow_levels.vim')
 " linting
-  call dein#add('w0rp/ale')
+  call dein#add('dense-analysis/ale')
 " textobj
   call dein#add('michaeljsmith/vim-indent-object')
   call dein#add('kana/vim-textobj-user')
