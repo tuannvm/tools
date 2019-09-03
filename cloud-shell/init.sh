@@ -10,9 +10,9 @@ sudo apt-get install telnet git curl iputils-ping dnsutils traceroute net-tools 
 
 if ! grep -qF "Host me" /etc/ssh/ssh_config; then
   cat << EOF | sudo tee -a /etc/ssh/ssh_config
-  Host me
-  Hostname tuannvm.com
-  Port 2220
-  User me
+Host me
+Hostname tuannvm.com
+Port 2220
+User me
 EOF
 fi

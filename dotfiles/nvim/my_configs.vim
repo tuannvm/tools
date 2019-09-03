@@ -29,7 +29,7 @@ set path+=**
 set wildmenu
 
 " use relative number
-set relativenumber
+" set relativenumber
 
 " no legacy support
 set nocompatible
@@ -147,8 +147,8 @@ set splitright
 set conceallevel=0
 set concealcursor=niv
 
-set list
-set listchars=tab:!·,trail:·,
+" set list
+" set listchars=tab:!·,trail:·,
 "let g:indentLine_char = ''
 "let g:indentLine_first_char = ''
 "let g:indentLine_showFirstIndentLevel = 1
@@ -170,7 +170,9 @@ let g:acp_enableAtStartup = 0
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
-
+autocmd InsertLeave * silent! pclose!
+let g:deoplete#sources#jedi#python_path = '/Users/tuannvm/.pyenv/shims/python'
+let g:deoplete#sources#jedi#show_docstring = 1
 
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
@@ -197,6 +199,7 @@ autocmd FileType python let g:autoformat_remove_trailing_spaces = 1
 
 " Path to python interpreter for neovim
 let g:python3_host_prog  = '/Users/tuannvm/.pyenv/shims/python'
+let g:python_host_prog  = '/Users/tuannvm/.pyenv/shims/python'
 " Skip the check of neovim module
 let g:python3_host_skip_check = 0
 
@@ -372,8 +375,11 @@ let g:ale_linters = {
 let g:ale_echo_cursor = 1
 let g:ale_fix_on_save = 1
 " use nice symbols for errors and warnings
-let g:ale_sign_error = '✗\ '
-let g:ale_sign_warning = '⚠\ '
+set signcolumn=no
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
+" let g:ale_sign_error = '💣'
+" let g:ale_sign_warning = '⚠'
 
 " fixer configurations
 let g:ale_fixers = {
@@ -389,7 +395,7 @@ nmap <silent> <leader>a <Plug>(ale_next_wrap)
 
 function! StatusLine(current, width)
   return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
-        \ . ' %{WindowNumber()} %{zoom#statusline()} %f%h%w%m%r '
+        \ . ' %f%h%w%m%r '
         \ . (a:current ? '%#CrystallineFill# ' : '')
         \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
         \ . (a:width > 80 ? ' [%{&enc}][%{&ffs}] %l/%L %P ' : ' ')

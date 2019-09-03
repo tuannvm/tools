@@ -17,9 +17,9 @@ set-option -s escape-time 10
 # bind -Tcopy-mode WheelDownPane send -N1 -X scroll-down
 
 # 256 color
-set -g default-terminal "screen-256color-italic"
+# fn arrow keys for zsh
+set -g default-terminal "screen-256color"
 set-option -ga terminal-overrides ",xterm-256color*:Tc:smso"
-
 
 # fix vim copy
 set -g focus-events on
@@ -132,8 +132,8 @@ tmux_conf_copy_to_os_clipboard=true
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-set -g status-keys vi
-set -g mode-keys vi
+#set -g status-keys vi
+#set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
