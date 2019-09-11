@@ -1,0 +1,6 @@
+---
+- htpasswd:
+    path: /etc/nginx/passwdfile
+    name: guest
+    password: 'tommycv'
+  become: true

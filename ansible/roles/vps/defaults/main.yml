@@ -15,6 +15,7 @@ apt_packages:
   - python3-neovim
   - python-pip
   - python3-pip
+  - python3-passlib
   - openvpn
   - golang
   - tig

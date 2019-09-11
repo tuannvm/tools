@@ -54,6 +54,14 @@
           location ~ /calendar(.*) {
             return 301 https://calendly.com/tuannvm/;
           }
+          location ~ /cv(.*) {
+            auth_basic           "Protected Area";
+            auth_basic_user_file /etc/nginx/passwdfile;
+            try_files DUMMY @cv;
+          }
+          location @cv {
+            return 301 https://drive.google.com/file/d/1B2bg6lG22jkbJoknVv0B9a3mpjr5izZU/view?usp=sharing;
+          }
 
     nginx_remove_default_vhost: true
 
