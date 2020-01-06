@@ -16,8 +16,10 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 
   " Add or remove your plugins here:
 " snippets
-"  call dein#add('SirVer/ultisnips')
+  call dein#add('SirVer/ultisnips')
   call dein#add('honza/vim-snippets')
+" scrolling
+  call dein#add('psliwka/vim-smoothie')
 " editorconfig
   call dein#add('editorconfig/editorconfig-vim')
 " focus on single window
@@ -49,7 +51,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 "   " call dein#add('jodosha/vim-godebug')
 "   call dein#add('deoplete-plugins/deoplete-go', {'build': 'make'})
 "   call dein#add('autozimu/LanguageClient-neovim', {'build': 'bash install.sh'})
-" function tagbar
+" function ta g
 "  call dein#add('majutsushi/tagbar')
 " sort
 "  call dein#add('christoomey/vim-sort-motion')
@@ -69,7 +71,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " tmux
 " call dein#add('christoomey/vim-tmux-navigator')
 " helm
-"  call dein#add('towolf/vim-helm')
+  call dein#add('towolf/vim-helm')
 " fuzzy search
 "  call dein#add('junegunn/fzf.vim')
 "  call dein#add('junegunn/fzf', {'build': './install --all'})

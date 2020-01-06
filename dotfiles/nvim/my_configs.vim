@@ -80,7 +80,7 @@ autocmd FileType tpl setlocal noeol binary
 
 """ markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['go', 'python', 'bash=sh', 'yaml', 'hcl']
+let g:markdown_fenced_languages = ['go', 'python', 'bash=sh', 'yaml']
 let g:markdown_syntax_conceal = 0
 let g:markdown_minlines = 100
 let g:vim_markdown_folding_disabled = 1
@@ -203,9 +203,8 @@ let g:python_host_prog  = '/Users/tuannvm/.pyenv/shims/python'
 " Skip the check of neovim module
 let g:python3_host_skip_check = 0
 
-" <TAB>: completion.
+" tag
 nmap <F8> :TagbarToggle <CR>
-
 
 "" let @p='i ^[p']'
 autocmd BufRead,BufNewFile */templates/*.yaml,*/templates/*.tpl set ft=helm
