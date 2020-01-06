@@ -21,6 +21,7 @@ apt_packages:
   - tig
   - unzip
   - dnsmasq
+  - httping
 pip_packages:
   - neovim
   - neovim-remote
