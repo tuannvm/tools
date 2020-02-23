@@ -22,6 +22,7 @@ apt_packages:
   - unzip
   - dnsmasq
   - httping
+  - aria2
 pip_packages:
   - neovim
   - neovim-remote
