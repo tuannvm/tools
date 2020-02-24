@@ -18,6 +18,8 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " snippets
   call dein#add('SirVer/ultisnips')
   call dein#add('honza/vim-snippets')
+" resize
+  call dein#add('camspiers/lens.vim')
 " scrolling
   call dein#add('psliwka/vim-smoothie')
 " editorconfig
@@ -29,6 +31,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " auto complete
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neoinclude.vim')
+" file manager
 " highlight
 " linting
   call dein#add('dense-analysis/ale')
@@ -63,7 +66,7 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
 " git support
 "  call dein#add('airblade/vim-gitgutter')
   call dein#add('tpope/vim-fugitive')
-  call dein#add('shumphrey/fugitive-gitlab.vim')
+  call dein#add('tpope/vim-rhubarb')
 " terraform support
   call dein#add('hashivim/vim-terraform')
 " theme

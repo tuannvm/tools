@@ -9,12 +9,23 @@ endtry
 " https://vi.stackexchange.com/questions/3314/short-buffer-name
 " set autochdir
 
+" set screen center
+nnoremap j jzz
+nnoremap k kzz
+set scrolloff=50
+
 " Auto close brackets
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" resize
+let g:lens#height_resize_min = 40
+let g:lens#width_resize_min = 120
+let g:lens#height_resize_max = 40
+let g:lens#width_resize_max = 120
 
 " mattn/gist-vim
 let g:gist_detect_filetype = 1
@@ -94,7 +105,7 @@ augroup END
 """ json
 let g:vim_json_syntax_conceal = 0
 
-""" NERDTree
+""" File Manager
 " map <C-n> :NERDTreeTabsToggle<CR><C-w><C-w>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " let NERDTreeChDirMode=2
