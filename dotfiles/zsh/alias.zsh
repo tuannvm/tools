@@ -1,19 +1,12 @@
-{
-	"data": "ENC[AES256_GCM,data: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,iv:/grC0Q6dvi9wgDy0OIZTE6xUYbHrwnOlRZpFADqEDEI=,tag:jkhc2+VCXNpXZU+AYP5OFw==,type:str]",
-	"sops": {
-		"kms": null,
-		"gcp_kms": null,
-		"azure_kv": null,
-		"lastmodified": "2019-09-04T14:47:34Z",
-		"mac": "ENC[AES256_GCM,data:QsVi+6AXSt0bcZgiMCui1+CU8WRYJeuyUd26Nc81he6nSslnEXkWrNo0RISZlNQ0Q1y2NANUqfWFsoX9iK9yyKpVFEKNBNoEcNBmGbn+OOP60LF0SZdZVFrs3ciIRdsQ3l3jiEOs7KdQo1qpJ+NSVQHbn5J8RRgG2ne+zY8NVVs=,iv:G3P223JpnqHOVbXWAGCrZDvk8anAvWhF463nghg3pUQ=,tag:eJdO6eI3voxUQGmh9clscQ==,type:str]",
-		"pgp": [
-			{
-				"created_at": "2019-09-04T14:47:34Z",
-				"enc": "-----BEGIN PGP MESSAGE-----\n\nwcFMA55trxtGQMuoARAANsdm06oqjPaEGAktGonCrJaTdPjJDwbqEkG5NCUnfOkN\nvrYMs17Az0sJWPbvzj2r5kHPKLOoJxZigfjsJf2aYAck2RYeiGrv6vMGsd3jWabw\nnzARQ2NU3EWyDGcawg8N3SpsK36d98fCxpVwcwKJ7AB+jLaNRNwNdnBqwVmHQ/Ln\n+aWTBRkQ0UPSlZ/Fu9m4swl+ImN/LEuYtSjWpWAxKtPHhQC8iwucEw8q+4zfkSmj\niNqfUpK9Xu6GFoon/dzNAPafgBTSB0LgKnlqErXlFLUKy1iQmAJx9hJU1I8wECqJ\nBPq6CXCtaueDbIrVg2DoDXCCRM+l9rFSFe2Mpw5mmR3f8enmZ2FL1ujFTJBQPJ8a\nT1lxX4EjEywGbLHIW0RMubV9plKAaK4OsrW7o4aVXbwNZ0wNSV2VPnjV2fuAT5c6\noQxazOY3Z70LsiG07Fd0RPWlcBNyh4/37mhIaORyBB8duWtARlOZI2Xrw7N4nBJO\nOdvvw4TKOJm2KgINfzOKwPssyj2ldzQP4nEDQwrbQWTfn8KyXsrfdmiu2+6sr75f\ngneWH/7r5g9+ap69Sim4Jx7eh+fZuVKL2gDf9rHoBoC5pXws4yTyy0ImsOxzcUE/\nR4t8Qw+ni3Fgr6a6w46mrmpTT2Ff0GvCxNyULgQuH0hUbP2nnbhAshn/MoH56O/S\n4AHkOwsgMoBbYnW8FGRZqGlZn+GdPuDT4IXh2sTg5uJDElab4EnlnY/VAqkXL96u\nCixdMDKyV+XaSuUi5fYnIn0Jo8FMpWXgCeTWVaQmaenUXw5urZBJiWwY4lMcQR7h\nGegA\n=zyKQ\n-----END PGP MESSAGE-----",
-				"fp": "A9A2486AC78F799FBADED3DB051FBECCDB27DB6B"
-			}
-		],
-		"unencrypted_suffix": "_unencrypted",
-		"version": "3.3.1"
-	}
-}
+alias tree="tree -L 1"
+alias v="nvim"
+alias vim="nvim"
+alias emacs="/usr/local/bin/emacs"
+alias vi="nvim"
+alias chrome="open -a \"Google Chrome\""
+alias tmux="tmux -u"
+alias tf="terraform"
+alias glog="git log --color --all --date-order --decorate --dirstat=lines,cumulative --stat | sed 's/\([0-9] file[s]\? .*)$\)/\1\n_______\n-------/g' | \less -R"
+# syntax highlight with pygmentize
+alias pygmentize="pygmentize -O style=native"
+alias pcat="pygmentize"

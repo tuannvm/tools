@@ -1,19 +1,82 @@
-{
-	"data": "ENC[AES256_GCM,data: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,iv:ExPN2ZKcLPAQPfziCNNCAziNfVabMYCg7lKoDGvo4Tg=,tag:6bEZQoXGgUj+gLjPvdTUDw==,type:str]",
-	"sops": {
-		"kms": null,
-		"gcp_kms": null,
-		"azure_kv": null,
-		"lastmodified": "2019-09-04T14:47:35Z",
-		"mac": "ENC[AES256_GCM,data:pBnp7MS5rRE5YyfXWXKpfWh2kuwlR0zXQ7shWjHHYnVhTDEpYFjtLWly6cxqydfku2jqYlYdzToXsiYz+731yWg5TnSLIOckVdZKnnzDW2F79wulJXytLhvYc4NvDtEjL65RVTBXCKkyI2f5XngiHBw4LM/kRDHIDEqwCAgQcX8=,iv:UeOAIiNlREf3Y09aQgRB3jfQcJRWeesWux2KpUT10AM=,tag:mf0okCGkJjbR3cFqaNVEzA==,type:str]",
-		"pgp": [
-			{
-				"created_at": "2019-09-04T14:47:35Z",
-				"enc": "-----BEGIN PGP MESSAGE-----\n\nwcFMA55trxtGQMuoARAAAHP1DFy0HpusSdAOXNBH0fWmjYGMFpZdwSe8xvmvzShd\nd+KJgDYcFoISJh0NFXGI94zM48eecakyvUl2uiWNgRFe8MRaYun2VYbl2tPTQ8mv\nVhoI6Qg3NtmGnOx6tQOYYziFIIF1swoivNwAsuUhwbWe56XrIsbkw2s9DPmQommW\nG6imFOnddxYUR5Ubhl/mpdAHFa+cHUzIVKnNPTGUM0HBcCku4ZRr2flnG3+xhVSh\n8BJ/G7UKUYwYjbJWUjMtYzUOCzSORL8AAUyJcC7yL64epkc+s2wPeGegAcDY023T\nVEjXKw4bjRljYl1ec98oOUgsLA4/W/zvChW9m1E7NFPqt/sjAvRjNp4cg0kpcUxW\n5LHkSZZumnQODqRCUBTOTefqvdvF10E0EBX5PBwYgSyUy3ppbvzVhZIJRV/QjhM6\nzDl+9yoscmvtqemu4O/efUBhrs7uG0zFWxnLB3GtJuPbBixSOqSxIt5ERLWlJ1b2\nvm5I5v/jj6lorNeO93jdvoWe3kQVvRWa+Utls4F4PNOmD+6ljN2bWzFErTw5VBmh\ng6TArSt5s157lxQFMRfmJPCF06yvnpm4FWZfhEf6DLJqVqQqooOXEjd13BW4I+Ju\nG3qlIbcZyQvN2FuppyU/KpMZK+2WL/gaA9lb6lipsHzjMFh1VGSt+seGgsZMSRvS\n4AHkO3lVyhDXRWPwnjnWhDRk1OHxcuC24FHh7TfgnuJBLPKE4P/lfA0FAD0rwzv8\nrZuqloFQ4yGfKLEmTlayrOgk16CNwtDgjORnb7JSrE14WukSrKfEUWN94sOHjyPh\nG6QA\n=OT6I\n-----END PGP MESSAGE-----",
-				"fp": "A9A2486AC78F799FBADED3DB051FBECCDB27DB6B"
-			}
-		],
-		"unencrypted_suffix": "_unencrypted",
-		"version": "3.3.1"
-	}
+export KUBECONFIG=~/.kube/config
+EXTRA_KUBECONFIGS="vungle_1d1"
+
+for file in $EXTRA_KUBECONFIGS; do
+  export KUBECONFIG=$KUBECONFIG:~/.kube/$file
+done
+
+kc() {
+  kubectl config current-context
+}
+
+kget() {
+  kubectl get $@
+}
+
+kgetd() {
+  kubectl get deployment $@
+}
+
+kscale() {
+  kubectl scale deployment $1 --replicas=$2
+}
+
+kroll() {
+  kubectl rollout restart deployment $@
+}
+
+kedit() {
+  kubectl edit $@
+}
+
+keditd() {
+  kedit deployment $@
+}
+
+kedits() {
+  kedit secret $@
+}
+
+kpods() {
+  kubectl get pod
+}
+
+kns() {
+  kubectl config set-context $(kubectl config current-context) --namespace=$1
+}
+
+kcurrent() {
+  kubectl config current-context
+}
+
+kdes() {
+  kubectl describe $@
+}
+
+klogs() {
+  kubectl logs -f $@
+}
+
+kex() {
+  kubectl explain $@
+}
+
+kexec() {
+  kubectl exec -it $@
+}
+
+ktest() {
+  kubectl run -it --rm --image=quay.io/tuannvm/ubuntu tuan-shell -- bash
+}
+
+kdash() {
+  kubectl -n kube-system port-forward $(kubectl get pods -n kube-system -o wide | grep dashboard | awk '{print $1}') 9090
+}
+
+ktag() {
+  kpods $@ -o json | jq ".spec.containers[].image" | cut -d":" -f2
+}
+
+knodes() {
+  kubectl get no -o custom-columns=NAME:.metadata.name,AWS-INSTANCE:.spec.externalID,AGE:.metadata.creationTimestamp
 }
