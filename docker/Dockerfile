@@ -1,11 +1,27 @@
+FROM hashicorp/terraform:0.12.29 AS builder
+
+###
+
 FROM ubuntu:18.04
 
 ENV BIN_PATH=/usr/local/bin
 ENV HELM_VERSION=2.12.2
 ENV KUBECTL_VERSION=v1.13.0
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-    apt-get install telnet git curl iputils-ping dnsutils traceroute net-tools iproute2 iperf3 postgresql-client netcat httping httperf nmap vim awscli wget -y
+    apt-get install -y telnet \
+                       git \
+                       wget curl \
+                       iputils-ping dnsutils \
+                       traceroute \
+                       net-tools \
+                       iproute2 \
+                       iperf3 \
+                       postgresql-client \
+                       netcat httping httperf nmap \
+                       vim \
+                       awscli
 
 RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar -xzC ${BIN_PATH}/ && \
     mv $BIN_PATH/linux-amd64/helm $BIN_PATH/ && \
@@ -13,3 +29,5 @@ RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}
 
 RUN curl -S -L -f https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o ${BIN_PATH}/kubectl && \
     chmod +x ${BIN_PATH}/kubectl
+
+COPY --from=builder /bin/terraform ${BIN_PATH}/
