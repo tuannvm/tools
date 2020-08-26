@@ -1,4 +1,5 @@
-FROM hashicorp/terraform:0.12.29 AS builder
+FROM mozilla/sops:v3.6 AS sops-builder
+FROM hashicorp/terraform:0.12.29 AS terraform-builder
 
 ###
 
@@ -30,4 +31,5 @@ RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}
 RUN curl -S -L -f https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o ${BIN_PATH}/kubectl && \
     chmod +x ${BIN_PATH}/kubectl
 
-COPY --from=builder /bin/terraform ${BIN_PATH}/
+COPY --from=sops-builder /go/bin/sops ${BIN_PATH}/
+COPY --from=terraform-builder /bin/terraform ${BIN_PATH}/
