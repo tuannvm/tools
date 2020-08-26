@@ -21,7 +21,7 @@ RUN apt-get update && \
                        iperf3 \
                        postgresql-client \
                        netcat httping httperf nmap \
-                       vim \
+                       vim jq \
                        awscli
 
 RUN curl -L https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz | tar -xzC ${BIN_PATH}/ && \
