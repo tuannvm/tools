@@ -3,5 +3,5 @@ set termguicolors
 let g:solarized_term_italics=0
 
 " Oceanic
-set background=dark
+set background=light
 colorscheme vim-material

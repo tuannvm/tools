@@ -1,9 +1,9 @@
 export KUBECONFIG=~/.kube/config
-EXTRA_KUBECONFIGS="vungle_1d1"
-
-for file in $EXTRA_KUBECONFIGS; do
-  export KUBECONFIG=$KUBECONFIG:~/.kube/$file
-done
+# EXTRA_KUBECONFIGS="vungle_1d1"
+# 
+# for file in $EXTRA_KUBECONFIGS; do
+#   export KUBECONFIG=$KUBECONFIG:~/.kube/$file
+# done
 
 kc() {
   kubectl config current-context

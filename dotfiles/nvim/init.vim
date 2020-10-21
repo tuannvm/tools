@@ -15,6 +15,8 @@ if dein#load_state('/Users/tuannvm/.cache/dein')
   call dein#add('/Users/tuannvm/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
+" text changing
+  call dein#add('tpope/vim-abolish')
 " snippets
   call dein#add('SirVer/ultisnips')
   call dein#add('honza/vim-snippets')

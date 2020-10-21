@@ -6,6 +6,8 @@ export PATH=/usr/local/bin:$PATH:~/golang/bin
 export LC_ALL=en_US.UTF-8
 export EDITOR=/usr/bin/vi
 export FZF_DEFAULT_COMMAND='rg --files'
+# Brew auto update
+export HOMEBREW_AUTO_UPDATE_SECS="86400"
 
 bindkey -s '^o' 'lfcd\n'  # zsh
 
@@ -33,4 +35,3 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
 else
   export VISUAL=/usr/bin/vi
 fi
-
